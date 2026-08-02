@@ -1,0 +1,29 @@
+.perfume-gallery {
+    padding: 40px;
+}
+
+.perfume-list {
+    display: grid;
+    gap: 24px;
+}
+
+.perfume-card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+
+.perfume-details {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+}
+
+.perfume-card img{
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
