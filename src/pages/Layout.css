@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    margin: 0;
+    font-size: 32px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 38px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a{
+    color: #222;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
