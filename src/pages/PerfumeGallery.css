@@ -1,9 +1,17 @@
+.perfume-gallery h1 {
+    font-size: 2rem;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .perfume-gallery {
     padding: 40px;
 }
 
 .perfume-list {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px;
 }
 
@@ -11,6 +19,13 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 12px;
+}
+
+.perfume-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px);
+    transition: 0.3s ease;
+
 }
 
 
