@@ -1,0 +1,11 @@
+.create-page{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+
+
+label {
+    display: block;
+}
