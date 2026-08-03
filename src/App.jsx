@@ -1,12 +1,24 @@
-import './App.css'
-import Feed from './pages/Feed'
+import { Routes, Route } from "react-router-dom"
+import Feed from "./pages/Feed"
+import Layout from "./pages/Layout"
+import CreatePost from "./pages/CreatePost"
+import PostPage from "./pages/PostPage"
+import EditPost from "./pages/EditPost"
+import PerfumeGallery from "./pages/PerfumeGallery"
+import PerfumeDetail from "./pages/PerfumeDetail"
 
 function App() {
-
   return (
-    <div className="App-container">
-      
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Feed />} />
+        <Route path="perfumes" element={<PerfumeGallery />} />
+        <Route path="perfumes/:id" element={<PerfumeDetail />} />
+        <Route path="new-post" element={<CreatePost />} />
+        <Route path="posts/:id" element={<PostPage />} />
+        <Route path="posts/:id/edit" element={<EditPost />} />
+      </Route>
+    </Routes>
   )
 }
 
