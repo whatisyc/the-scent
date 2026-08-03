@@ -1,0 +1,30 @@
+.post-card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    width: 100%;
+    padding-bottom: 32px;
+}
+
+.feed-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+}
+
+.post-details {
+    text-decoration: none;
+    color: inherit;
+    
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.upvote-count {
+  margin-bottom: 0;
+  font-weight: 600;
+}
