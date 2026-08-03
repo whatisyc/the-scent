@@ -130,7 +130,7 @@ const PostPage = () => {
                 type="button" 
                 onClick={handleUpvote}
             >
-                ♥ Upvote · {post.upvotes ?? 0}
+                ❤️ Upvote · {post.upvotes ?? 0}
             </button>
 
             <form className="comment-form" onSubmit={handleComment}>
