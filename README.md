@@ -4,7 +4,7 @@ Submitted by: Anastasiia Us
 
 This web app: The Scent is a community forum for perfume lovers to discover popular fragrances, share reviews and recommendations, and discuss their favorite scents. Users can browse the perfume gallery, create posts, search and sort discussions, leave comments, and upvote helpful or interesting posts.
 
-Time spent: 12 hours spent in total
+Time spent: 13 hours spent in total
 
 ## Required Features
 
