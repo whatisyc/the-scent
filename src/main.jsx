@@ -9,6 +9,7 @@ import PerfumeDetail from './pages/PerfumeDetail.jsx'
 import CreatePost from './pages/CreatePost.jsx'
 import Layout from './pages/Layout.jsx'
 import PostPage from './pages/PostPage.jsx'
+import EditPost from './pages/EditPost.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="perfumes/:id" element={<PerfumeDetail />} />
         <Route path="new-post" element={<CreatePost />}/>
         <Route path="posts/:id" element={<PostPage />}/>
+        <Route path="posts/:id/edit" element={<EditPost />} />
       </Route>
     </Routes>
   </BrowserRouter>
