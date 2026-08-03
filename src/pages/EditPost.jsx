@@ -144,7 +144,11 @@ const EditPost = () => {
                 </select>
 
                 <div className="edit-form-actions">
-                    <button type="submit" disabled={isSaving}>
+                    <button
+                        className="submit-button"
+                        type="submit"
+                        disabled={isSaving}
+                    >
                         {isSaving ? "Saving..." : "Save Changes"}
                     </button>
 

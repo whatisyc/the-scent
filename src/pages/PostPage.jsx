@@ -54,11 +54,10 @@ const PostPage = () => {
     const handleUpvote = async () => {
         const newUpvoteCount = (post.upvotes ?? 0) + 1
 
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('posts')
             .update({ upvotes: newUpvoteCount })
             .eq('id', id)
-            .single()
 
         if (error) {
             console.error("Error updating upvotes:", error)
@@ -115,10 +114,14 @@ const PostPage = () => {
 
         setIsDeleting(true)
 
-        const { error } = await supabase   
+        const { data, error } = await supabase   
             .from('posts')
             .delete()
-            .eq("id", id)
+            .eq("id", Number(id))
+            .select("id")
+
+            console.log("Deleted data:", data)
+            console.log("Delete error:", error)
 
         if (error) {
             console.log("Error deleting post:", error)
