@@ -78,7 +78,7 @@ const EditPost = () => {
                 : null
         }
 
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('posts')
             .update(updatedPost)
             .eq("id", id)
