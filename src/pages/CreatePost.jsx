@@ -98,7 +98,6 @@ const CreatePost = () => {
                 onChange={handleChange}
                 placeholder="Share your thought, question, or review..."
                 rows="8"
-                required
             />
 
             <label htmlFor="image_url">Image URL</label>

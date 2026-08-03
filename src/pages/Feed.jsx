@@ -42,7 +42,7 @@ const Feed = () => {
                                     <h2>{post.title}</h2>
                                     <p>{new Date(post.created_at).toLocaleString()}</p>
                                     <p className="upvote-count">
-                                        ▲ {post.upvotes ?? 0} upvotes
+                                        ♥ {post.upvotes ?? 0} upvotes
                                     </p>
 
                                 </div>
