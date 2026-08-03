@@ -7,6 +7,7 @@ const Feed = () => {
 
     const [posts, setPosts] = useState([])
     const [sortBy, setSortBy] = useState("newest")
+    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -33,6 +34,13 @@ const Feed = () => {
     }, [sortBy])
 
 
+    const filteredPosts = posts.filter((post) => {
+        return post.title
+            .toLowerCase()
+            .includes(searchTerm.trim().toLowerCase())
+    })
+
+
     return (
         <div className="feed-page">
             <div className="feed-header">
@@ -40,51 +48,66 @@ const Feed = () => {
                 <p>Check out the latest posts from our community!</p>
             </div>
 
-            <div className="sort-controls">
-                <label htmlFor="sort-posts">Sort by:</label>
+            <div className="feed-controls">
+                <input
+                    className="search-input"
+                    type="search"
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    placeholder="Search posts by title..."
+                />
 
-                <select
-                    id="sort-posts"
-                    value={sortBy}
-                    onChange={(event) => setSortBy(event.target.value)}
-                >
-                    <option value="newest">Newest</option>
-                    <option value="upvotes">Most upvoted</option>
-                </select>
+                <div className="sort-controls">
+                    <label htmlFor="sort-posts">Sort by:</label>
+
+                    <select
+                        id="sort-posts"
+                        value={sortBy}
+                        onChange={(event) => setSortBy(event.target.value)}
+                    >
+                        <option value="newest">Newest</option>
+                        <option value="upvotes">Most upvoted</option>
+                    </select>
+                </div>
             </div>
 
             <div className="feed-container">
-                    {posts.length > 0 ? (
-                        posts.map((post) => (
-                             <Link
-                                key={post.id}
-                                className="post-details"
-                                to={`/posts/${post.id}`}
-                            >
-                                <div key={post.id} className="post-card">
-                                    <h2>{post.title}</h2>
-
-                                    <p className="post-date">
-                                        {new Date(post.created_at).toLocaleString()}
-                                    </p>
-
-                                    <div className="post-stats">
-                                        <p className="upvote-count">
-                                            ❤️ {post.upvotes ?? 0} upvotes
-                                        </p>
-
-                                        <p className="comment-count">
-                                            💬 {post.comments?.length ?? 0}{" "}
-                                            {post.comments?.length === 1 ? "comment" : "comments"}
-                                        </p>
-                                    </div>
-
-                                </div>
-                            </Link>
-                        ))
-                    ) : (
+                    {posts.length === 0 ? (
                         <p>No posts yet. Be the first to share!</p>
-                    )}
+                        ) : filteredPosts.length === 0 ? (
+                            <p>No posts match your search.</p>
+                        ) : (
+                            filteredPosts.map((post) => (
+                                <Link
+                                    key={post.id}
+                                    className="post-details"
+                                    to={`/posts/${post.id}`}
+                                >
+                                    <div key={post.id} className="post-card">
+                                        <h2>{post.title}</h2>
+
+                                        <p className="post-date">
+                                            {new Date(post.created_at).toLocaleString()}
+                                        </p>
+
+                                        <div className="post-stats">
+                                            <p className="upvote-count">
+                                                ❤️ {post.upvotes ?? 0} upvotes
+                                            </p>
+
+                                            <p className="comment-count">
+                                                💬 {post.comments?.length ?? 0}{" "}
+                                                {post.comments?.length === 1 ? "comment" : "comments"}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </Link>
+                            ))
+                        )
+                    }
+
+                        
             </div>
         </div>
     )
