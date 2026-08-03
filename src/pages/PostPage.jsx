@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import './PostPage.css'
 import supabase from "../client"
 
@@ -9,6 +10,7 @@ const PostPage = () => {
     const [post, setPost] = useState(null)
     const [newComment, setNewComment] = useState("")
     const [comments, setComments] = useState([])
+    const [isDeleting, setIsDeleting] = useState(false)
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -102,12 +104,56 @@ const PostPage = () => {
 
         }
 
+    const handleDelete = async () => {
+        const confirmed = window.confirm(
+            "Are you sure you want to delete this post?"
+        )
+
+        if (!confirmed) {
+            return
+        }
+
+        setIsDeleting(true)
+
+        const { error } = await supabase   
+            .from('posts')
+            .delete()
+            .eq("id", id)
+
+        if (error) {
+            console.log("Error deleting post:", error)
+            setIsDeleting(false)
+            return
+        }
+
+        window.location.href="/"
+    }
+
     if (!post) {
         return <p>Loading...</p>
     }
 
     return (
         <div className="post-page">
+
+            <div className="post-actions">
+                <Link
+                    className="edit-post-button"
+                    to={`/posts/${id}/edit`}
+                >
+                    Edit Post
+                </Link>
+
+                <button
+                    className="delete-post-button"
+                    type="button"
+                    onClick={handleDelete}
+                    disabled={isDeleting}
+                >
+                    {isDeleting ? "Deleting..." : "Delete Post"}
+                </button>
+            </div>
+
             <h1>{post.title}</h1>
 
             <p className="post-date">
@@ -132,6 +178,7 @@ const PostPage = () => {
             >
                 ❤️ Upvote · {post.upvotes ?? 0}
             </button>
+
 
             <form className="comment-form" onSubmit={handleComment}>
                 <label htmlFor="comment">Leave a Comment</label>
