@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import supabase from "../client.js"
@@ -66,7 +66,7 @@ const PerfumeDetail = () => {
             const { data, error } = await supabase
                 .from('posts')
                 .select('*')
-                .eq('perfume_id, id')
+                .eq('perfume_id', id)
                 .order('created_at', { ascending: false })
 
             if (error) {
@@ -164,7 +164,20 @@ const PerfumeDetail = () => {
             </div>
 
             <div className='relatedPosts'>
+                    <h2>RelatedPosts</h2>
 
+                    {relatedPosts.length > 0 ? (
+                        relatedPosts.map((post) => (
+                            <Link
+                                key={post.id}
+                                to={`/posts/${post.id}`}
+                            >
+                                {post.title}
+                            </Link>
+                        ))
+                    ) : (
+                        <p>No related posts yet.</p>
+                    )}
             </div>
         </div>
     )
