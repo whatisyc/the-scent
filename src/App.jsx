@@ -6,6 +6,8 @@ import PostPage from "./pages/PostPage"
 import EditPost from "./pages/EditPost"
 import PerfumeGallery from "./pages/PerfumeGallery"
 import PerfumeDetail from "./pages/PerfumeDetail"
+import SignUp from "./pages/SignUp"
+import Login from "./pages/Login"
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="new-post" element={<CreatePost />} />
         <Route path="posts/:id" element={<PostPage />} />
         <Route path="posts/:id/edit" element={<EditPost />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="login" element={<Login />} />
       </Route>
     </Routes>
   )
