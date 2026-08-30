@@ -10,7 +10,7 @@ const SignUp = () => {
     const handleSignUp = async (event) => {
         event.preventDefault()
 
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
             email,
             password,
             options: {
@@ -24,6 +24,19 @@ const SignUp = () => {
             setMessage(error.message)
             return
         }
+
+        const user = data.user
+        const { error: profileError } = await supabase
+            .from('profiles')
+            .insert({
+                id: user.id,
+                nickname: nickname.trim()
+            })
+        
+            if (profileError) {
+                console.error("Error creating profile:", profileError)
+                return
+            }
 
         window.alert("Your account has been succesfully created")
         window.location.href="/"
