@@ -44,9 +44,14 @@ const CreatePost = () => {
         })
     }
 
+
     const createPost = async (event) => {
         event.preventDefault()
         setIsSubmitting(true)
+
+        const {
+            data: { user }
+        } = await supabase.auth.getUser()
 
         const newPost = {
             title: post.title.trim(),
@@ -54,7 +59,8 @@ const CreatePost = () => {
             image_url: post.image_url.trim() || null,
             perfume_id: post.perfume_id
                 ? Number(post.perfume_id)
-                : null
+                : null,
+            user_id: user?.id ?? null
         }
 
         const { data, error } = await supabase
@@ -125,7 +131,7 @@ const CreatePost = () => {
                 ))}
             </select>
 
-                <button type="submit" disabled={isSubmitting}>
+                <button className="create-post-button" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Creating..." : "Create Post"}
                 </button>
 
