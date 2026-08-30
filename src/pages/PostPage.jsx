@@ -16,7 +16,7 @@ const PostPage = () => {
         const fetchPost = async () => {
             const { data, error } = await supabase
                 .from('posts')
-                .select('*')
+                .select("*, profiles(nickname)")
                 .eq('id', id)
                 .single()
 
@@ -173,6 +173,10 @@ const PostPage = () => {
                     src={post.image_url} 
                     alt={post.title} />
             )}
+
+            <p>
+                👤 {post.profiles?.nickname ?? "Anonymous"}
+            </p>
             
             <button 
                 className="upvote-button"
