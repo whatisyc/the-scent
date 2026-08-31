@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import supabase from '../client.js'
+import './Login.css'
 
 const SignUp = () => {
 
@@ -44,7 +45,7 @@ const SignUp = () => {
 
     return (
         <div className="signup-page">
-            <form onSubmit={handleSignUp}>
+            <form className="signup-form" onSubmit={handleSignUp}>
                 <h1>Create Account</h1>
 
                 <label htmlFor="email">Email</label>
@@ -74,7 +75,7 @@ const SignUp = () => {
                     required
                 />
 
-                <button type="submit">Sign Up</button>
+                <button className="submit-button" type="submit">Sign Up</button>
             </form>  
 
         </div>
