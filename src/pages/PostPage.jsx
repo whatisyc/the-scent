@@ -36,7 +36,7 @@ const PostPage = () => {
         const fetchComments = async () => {
             const { data, error } = await supabase
                 .from('comments')
-                .select('*')
+                .select('*, profiles(nickname)')
                 .eq('post_id', id)
                 .order('created_at', { ascending: true })
 
@@ -212,6 +212,9 @@ const PostPage = () => {
 
                             <p className="comment-date">
                                 {new Date(comment.created_at).toLocaleString()}
+                            </p>
+                            <p>
+                                👤 {comment.profiles?.nickname ?? "Anonymous"}
                             </p>
                         </div>
                     ))
