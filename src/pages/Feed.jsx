@@ -16,10 +16,7 @@ const Feed = () => {
 
             const { data, error } = await supabase
                 .from('posts')
-                .select(`
-                    *,
-                    comments(id)
-                `) 
+                .select("*, comments(id), profiles(nickname)") 
                 .order(orderColumn, { ascending: false })
 
             if (error) {
@@ -86,7 +83,8 @@ const Feed = () => {
                                     <div key={post.id} className="post-card">
                                         <h2>{post.title}</h2>
 
-                                        <p className="post-date">
+                                        <p className="post-meta">
+                                            👤 {post.profiles?.nickname ?? "Anonymous"} ·{" "}
                                             {new Date(post.created_at).toLocaleString()}
                                         </p>
 
