@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import supabase from '../client.js'
 
+import './Login.css'
+
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -25,7 +27,7 @@ const Login = () => {
 
     return(
         <div className="login-page">
-            <form onSubmit={handleLogin}>
+            <form className="login-form" onSubmit={handleLogin}>
                 <h1>Log In</h1>
 
                 <label htmlFor="email">Email</label>   
@@ -48,10 +50,10 @@ const Login = () => {
 
                 {errorMessage && <p>{errorMessage}</p>}
 
-                <button type="submit">Log In</button>
+                <button className="submit-button" type="submit">Log In</button>
             </form>
 
-            <Link to="/signup">Create an account</Link>
+            <Link className="signup-link" to="/signup">Create an account</Link>
 
 
         </div>
